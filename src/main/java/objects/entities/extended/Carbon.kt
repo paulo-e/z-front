@@ -4,7 +4,7 @@ import lombok.Getter
 import lombok.NoArgsConstructor
 import lombok.RequiredArgsConstructor
 import lombok.Setter
-import objects.Position
+import classes.Position
 
 @RequiredArgsConstructor
 @NoArgsConstructor

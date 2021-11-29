@@ -1,4 +1,4 @@
-package objects
+package classes
 
 import org.hexworks.zircon.api.data.Position as API
 
