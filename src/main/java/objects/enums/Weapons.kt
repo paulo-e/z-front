@@ -12,4 +12,7 @@ enum class Weapons {
 
     abstract var damage: Int
     abstract var title: String
+    fun doDamage(health: Int): Int {
+        return health - this.damage
+    }
 }

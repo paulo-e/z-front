@@ -1,7 +1,7 @@
 package objects.entities.extended
 
 import lombok.*
-import classes.Position
+import objects.classes.Position
 
 @Getter
 @Setter

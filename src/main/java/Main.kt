@@ -1,18 +1,11 @@
-import org.hexworks.zircon.api.CP437TilesetResources
+import config.GameConfig
 import org.hexworks.zircon.api.SwingApplications
-import org.hexworks.zircon.api.application.AppConfig
 import org.hexworks.zircon.api.grid.TileGrid
-import views.StartView
+import views.PlayView
 
 fun main() {
-    val config = AppConfig.newBuilder()
-        .withSize(60, 30)
-        .withDefaultTileset(CP437TilesetResources.rexPaint16x16())
-        .withDebugMode(false)
-        .withTitle("Z Game")
-        .build()
 
-    val grid: TileGrid = SwingApplications.startTileGrid(config)
+    val grid: TileGrid = SwingApplications.startTileGrid(GameConfig.buildAppConfig())
 
-    StartView(grid).dock()
+    PlayView(grid).dock()
 }

@@ -1,4 +1,4 @@
-package classes
+package objects.classes
 
 import org.hexworks.zircon.api.color.ANSITileColor
 

@@ -1,13 +1,14 @@
 package views
 
-import config.UserConfig
+import config.GameConfig
 import org.hexworks.zircon.api.ComponentDecorations
 import org.hexworks.zircon.api.Components
 import org.hexworks.zircon.api.component.ComponentAlignment
 import org.hexworks.zircon.api.grid.TileGrid
 import org.hexworks.zircon.api.view.base.BaseView
+import kotlin.system.exitProcess
 
-class StartView(grid: TileGrid) : BaseView(grid, UserConfig.THEME) {
+class StartView(private val grid: TileGrid) : BaseView(grid, GameConfig.THEME) {
     init {
         val msg = "Hello to Z!"
         val header = Components.textBox(contentWidth = msg.length)
@@ -22,17 +23,7 @@ class StartView(grid: TileGrid) : BaseView(grid, UserConfig.THEME) {
             .withDecorations(ComponentDecorations.box(), ComponentDecorations.shadow())
             .build()
 
-        val quitButton = Components.button()
-            .withAlignmentAround(startButton, ComponentAlignment.BOTTOM_CENTER)
-            .withText("Quit!")
-            .withDecorations(ComponentDecorations.box(), ComponentDecorations.shadow())
-            .build()
-
-        startButton.onActivated {
-            PlayView(grid)
-        }
-
-        quitButton.onActivated { screen.close() }
+        startButton.onActivated { replaceWith(PlayView(grid)) }
 
         screen.addComponents(header, startButton)
     }

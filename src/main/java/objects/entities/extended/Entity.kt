@@ -2,8 +2,8 @@ package objects.entities.extended
 
 import lombok.NoArgsConstructor
 import lombok.RequiredArgsConstructor
-import classes.Color
-import classes.Position
+import objects.classes.Color
+import objects.classes.Position
 import org.hexworks.zircon.api.color.ANSITileColor
 import org.hexworks.zircon.api.data.Tile
 
