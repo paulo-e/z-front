@@ -1,13 +1,12 @@
+import objects.Position
 import objects.entities.Player
-import org.hexworks.zircon.api.*
+import org.hexworks.zircon.api.CP437TilesetResources
+import org.hexworks.zircon.api.SwingApplications
 import org.hexworks.zircon.api.application.AppConfig
-import org.hexworks.zircon.api.component.ComponentAlignment
-import org.hexworks.zircon.api.component.Label
 import org.hexworks.zircon.api.grid.TileGrid
-import org.hexworks.zircon.api.screen.Screen
 
 fun main() {
-    val player = Player()
+    val player = Player(Position(0, 0))
 
     val config = AppConfig.newBuilder()
         .withSize(60, 30)
@@ -16,21 +15,5 @@ fun main() {
 
     val tileGrid: TileGrid = SwingApplications.startTileGrid(config)
 
-    val screen: Screen = Screen.create(tileGrid)
-
-    Components.label()
-        .withText("Hello, World!")
-        .withAlignment(ComponentAlignments.alignmentWithin(tileGrid, ComponentAlignment.CENTER))
-        .build()
-
-    val playerLabel = Components.label()
-        .withText(player.getUnicode())
-        .withAlignment(ComponentAlignments.alignmentWithin(tileGrid, ComponentAlignment.CENTER))
-        .build()
-
-    screen.addComponent(playerLabel)
-
-    screen.display()
-
-    screen.theme = ColorThemes.arc()
+    tileGrid.draw(player.toTile(), player.toPosition())
 }

@@ -10,20 +10,9 @@ import objects.Position
 @NoArgsConstructor
 @Getter
 @Setter
-open class Carbon(unicode: String) : Entity(unicode) {
-    private val position: Position = Position(0, 0)
-
+open class Carbon(unicode: Char, position: Position) : Entity(unicode, position) {
     private var health: Int = 0
     private var energy: Int = 0
-
-    open fun changePosition(position: Position) {
-        this.position.x = position.x
-        this.position.y = position.y
-    }
-
-    open fun position(): Position {
-        return this.position
-    }
 
     open fun isDead(): Boolean {
         return health > 0

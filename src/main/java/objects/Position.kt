@@ -1,15 +1,14 @@
 package objects
 
-import lombok.AllArgsConstructor
+import org.hexworks.zircon.api.data.Position as API
 
-@AllArgsConstructor
 open class Position(var x: Int, var y: Int) {
     open fun addToX(value: Int) {
-        this.x += value
+        x += value
     }
 
     open fun addToY(value: Int) {
-        this.y += value
+        y += value
     }
 
     open fun add(toX: Int, toY: Int) {
@@ -18,15 +17,19 @@ open class Position(var x: Int, var y: Int) {
     }
 
     open fun subToX(value: Int) {
-        this.x -= value
+        x -= value
     }
 
     open fun subToY(value: Int) {
-        this.y -= value
+        y -= value
     }
 
     open fun sub(toX: Int, toY: Int) {
         subToX(toX)
         subToY(toY)
+    }
+
+    open fun toPosition(): API {
+        return API.create(x, y)
     }
 }
