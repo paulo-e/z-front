@@ -6,12 +6,15 @@ import extensions.position
 import org.hexworks.amethyst.api.Engine
 import org.hexworks.amethyst.api.entity.Entity
 import org.hexworks.amethyst.api.entity.EntityType
+import org.hexworks.amethyst.internal.TurnBasedEngine
 import org.hexworks.cobalt.datatypes.Maybe
 import org.hexworks.zircon.api.builder.game.GameAreaBuilder
 import org.hexworks.zircon.api.data.Position3D
 import org.hexworks.zircon.api.data.Size3D
 import org.hexworks.zircon.api.data.Tile
 import org.hexworks.zircon.api.game.GameArea
+import org.hexworks.zircon.api.screen.Screen
+import org.hexworks.zircon.api.uievent.UIEvent
 
 class World(
     startingBlocks: Map<Position3D, GameBlock>,
@@ -22,7 +25,7 @@ class World(
     .withActualSize(actualSize)
     .build() {
 
-    private val engine: Engine<GameContext> = Engine.create()
+    private val engine: TurnBasedEngine<GameContext> = Engine.create()
 
     init {
         startingBlocks.forEach { (pos, block) ->
@@ -69,6 +72,30 @@ class World(
             currentTry++
         }
         return position
+    }
+
+    fun update(screen: Screen, uiEvent: UIEvent, game: Game) {
+        engine.executeTurn(GameContext(
+            world = this,
+            screen = screen,
+            uiEvent = uiEvent,
+            player = game.player
+        ))
+    }
+
+    fun moveEntity(entity: GameEntity<EntityType>, position: Position3D): Boolean {
+        var sucess: Boolean
+        val oldBlock = fetchBlockAtOrNull(entity.position)
+        val newBlock = fetchBlockAtOrNull(position)
+
+        oldBlock.also { newBlock.let {
+            sucess = true
+            oldBlock?.removeEntity(entity)
+            entity.position = position
+            newBlock?.addEntity(entity)
+        } }
+
+        return sucess
     }
 
 }

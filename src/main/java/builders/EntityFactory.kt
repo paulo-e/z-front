@@ -7,6 +7,9 @@ import builders.GameTileRepository.PLAYER
 import org.hexworks.amethyst.api.builder.EntityBuilder
 import org.hexworks.amethyst.api.entity.EntityType
 import org.hexworks.amethyst.api.newEntityOfType
+import systems.CameraMover
+import systems.InputReceiver
+import systems.Movable
 import world.GameContext
 
 fun <T : EntityType> newGameEntityOfType(
@@ -17,7 +20,7 @@ fun <T : EntityType> newGameEntityOfType(
 object EntityFactory {
     fun newPlayer() = newGameEntityOfType(Player) {
         attributes(EntityPosition(), EntityTile(PLAYER))
-        behaviors()
-        facets()
+        behaviors(InputReceiver)
+        facets(Movable, CameraMover)
     }
 }

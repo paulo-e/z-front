@@ -1,5 +1,6 @@
 package extensions
 
+import org.hexworks.amethyst.api.Message
 import org.hexworks.amethyst.api.entity.Entity
 import org.hexworks.amethyst.api.entity.EntityType
 import world.GameContext
@@ -7,3 +8,5 @@ import world.GameContext
 typealias AnyGameEntity = GameEntity<EntityType>
 
 typealias GameEntity<T> = Entity<T, GameContext>
+
+typealias GameMessage = Message<GameContext>

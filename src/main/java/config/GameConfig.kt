@@ -16,7 +16,7 @@ object GameConfig {
     const val WINDOW_HEIGHT = 40
     const val Z_LEVELS = 2
 
-    val WORLD_SIZE = Size3D.create(WINDOW_WIDTH, WINDOW_HEIGHT, Z_LEVELS)
+    val WORLD_SIZE = Size3D.create(WINDOW_WIDTH * 2, WINDOW_HEIGHT * 2, Z_LEVELS)
     val GAME_AREA_SIZE = Size3D.create(
         xLength = WINDOW_WIDTH - SIDEBAR_WIDTH,
         yLength = WINDOW_HEIGHT - LOG_AREA_HEIGHT,

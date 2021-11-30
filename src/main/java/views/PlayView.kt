@@ -15,6 +15,8 @@ import org.hexworks.zircon.api.component.ComponentAlignment.BOTTOM_RIGHT
 import org.hexworks.zircon.api.component.ComponentAlignment.TOP_RIGHT
 import org.hexworks.zircon.api.game.ProjectionMode
 import org.hexworks.zircon.api.grid.TileGrid
+import org.hexworks.zircon.api.uievent.KeyboardEventType
+import org.hexworks.zircon.api.uievent.Processed
 import org.hexworks.zircon.api.view.base.BaseView
 import org.hexworks.zircon.internal.game.impl.GameAreaComponentRenderer
 import world.Game
@@ -25,6 +27,11 @@ class PlayView(
     theme: ColorTheme = GameConfig.THEME
 ) : BaseView(grid, theme) {
     init {
+        screen.handleKeyboardEvents(KeyboardEventType.KEY_PRESSED) { event, _ ->
+            game.world.update(screen, event, game)
+            Processed
+        }
+
         val sidebar = Components.panel()
             .withName("Sidebar")
             .withPreferredSize(SIDEBAR_WIDTH, WINDOW_HEIGHT)
