@@ -1,19 +1,19 @@
 package world
 
-import builders.WorldBuilder
-import config.GameConfig.GAME_AREA_SIZE
-import config.GameConfig.WORLD_SIZE
-import org.hexworks.zircon.api.data.Size3D
+import attributes.types.Player
+import extensions.GameEntity
 
-class Game(val world: World) {
+class Game(
+    val world: World,
+    val player: GameEntity<Player>
+) {
     companion object {
         fun create(
-            worldSize: Size3D = WORLD_SIZE,
-            visibleSize: Size3D = GAME_AREA_SIZE
+            player: GameEntity<Player>,
+            world: World
         ) = Game(
-            WorldBuilder(worldSize)
-                .makeRooms()
-                .build(visibleSize)
+            world = world,
+            player = player
         )
     }
 }

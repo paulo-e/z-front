@@ -26,7 +26,8 @@ object GameConfig {
     fun buildAppConfig() = AppConfig.newBuilder()
         .withDefaultTileset(TILESET)
         .withSize(WINDOW_WIDTH, WINDOW_HEIGHT)
+        .withFullScreen(IS_FULLSCREEN)
         .build()
 
-    var SHOW_FPS = false
+    var IS_FULLSCREEN = false
 }

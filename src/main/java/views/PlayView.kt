@@ -1,5 +1,6 @@
 package views
 
+import builders.GameBuilder
 import builders.GameTileRepository
 import config.GameConfig
 import config.GameConfig.LOG_AREA_HEIGHT
@@ -20,7 +21,7 @@ import world.Game
 
 class PlayView(
     grid: TileGrid,
-    game: Game = Game.create(),
+    game: Game = GameBuilder.create(),
     theme: ColorTheme = GameConfig.THEME
 ) : BaseView(grid, theme) {
     init {

@@ -27,6 +27,11 @@
             <version>${zircon.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.hexworks.amethyst</groupId>
+            <artifactId>amethyst.core-jvm</artifactId>
+            <version>2021.0.3-RELEASE</version>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.22</version>
